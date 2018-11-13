@@ -39,13 +39,17 @@ export default function items(state = defaultState, action) {
     }
 
     case 'HIGHLIGHT_ITEM': {
-      return state.map(obj => {
-        const item = obj;
-        if (item.id === action.id) {
-          item.highlighted = action.highlighted;
-        }
-        return item;
-      });
+      const item = state.find(item => item.id === action.id);
+      if (item && item.highlighted !== action.highlighted) {
+        return state.map(obj => {
+          const item = obj;
+          if (item.id === action.id) {
+            item.highlighted = action.highlighted;
+          }
+          return item;
+        });
+      }
+      return state;
     }
 
     default: {
