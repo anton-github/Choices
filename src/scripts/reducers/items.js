@@ -39,8 +39,8 @@ export default function items(state = defaultState, action) {
     }
 
     case 'HIGHLIGHT_ITEM': {
-      const item = state.find(item => item.id === action.id);
-      if (item && item.highlighted !== action.highlighted) {
+      const changingItem = state.find(obj => obj.id === action.id);
+      if (changingItem && changingItem.highlighted !== action.highlighted) {
         return state.map(obj => {
           const item = obj;
           if (item.id === action.id) {
